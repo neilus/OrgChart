@@ -1,0 +1,9 @@
+digraph G{
+graph [splines=ortho, concentrate=true]
+
+1->2[label="12"];
+3->2;
+2->4;
+2->5;
+5->{ hub; mol; mf; tsi2; guest; }[dir=none, penwidth=5, color=pink]
+}
