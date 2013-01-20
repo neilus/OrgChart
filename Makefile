@@ -1,9 +1,9 @@
 all: jati.svg jati.eps
 clean:
 	rm -rvf jati.svg jati.eps
-jati.svg: jati.dot 
+jati.svg: jati.dot
 	graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg -ojati.svg jati.dot
-jati.eps: jati.dot 
+jati.eps: jati.dot
 	graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Teps -ojati.eps jati.dot
 #### graphviz stuff
 graphviz: graphviz-2.30.0
@@ -14,7 +14,7 @@ graphviz-2.30.0: graphviz-2.30.0.tar.gz
 	tar xzf graphviz-2.30.0.tar.gz
 graphviz-2.30.0.tar.gz: graphviz-2.30.0.tar.gz.md5
 	rm -rf $@ $@.?
-	wget http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-2.30.0.tar.gz 	
+	wget http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-2.30.0.tar.gz
 	md5sum -c graphviz-2.30.0.tar.gz.md5
 	@touch graphviz-2.30.0.tar.gz graphviz-2.30.0.tar.gz.md5
 graphviz-2.30.0.tar.gz.md5:
@@ -35,7 +35,7 @@ lemon: lemon-1.2
 	@echo "Most installalok lokalisan egy lemon-t"
 	-@tput sgr0
 	@echo -n "ide rakom a lemon backupjat"
-	-@tput setf 
+	-@tput setf
 	@echo `(uname -a|grep -i linux >/dev/null && echo linux) || (uname -a|grep -i cygwin >/dev/null && echo cygwin)|| (uname -a|grep -i MINGW32 >/dev/null && echo windows-mingw) `
 	-@tput sgr0
 	./install-lemon.sh "-`(uname -a|grep -i linux >/dev/null && echo linux) || (uname -a|grep -i cygwin >/dev/null && echo cygwin)|| (uname -a|grep -i MINGW32 >/dev/null && echo windows-mingw) `"
