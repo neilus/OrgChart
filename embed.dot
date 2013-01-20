@@ -1,0 +1,10 @@
+digraph G{
+graph [splines=ortho, concentrate=true, id="jati-fa"]
+1 -> {2,3,4,5}
+	subgraph 55{
+	graph [splines=ortho, concentrate=true, id="sub55", overlap=false]
+	root[shape="point",color=blue];
+	root:e->{ hub; mol; mf; tsi2;guest; }[dir=none, penwidth=5, color=pink, concentrate=true,overlap=false,minlen=2]
+	}
+5 -> root[dir=none, penwidth=5, color=pink];
+}

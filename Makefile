@@ -1,15 +1,34 @@
 all: jati.svg jati.eps
+toolchain: lemon graphviz raphael.js gviz-api.js
+clean-toolchain:
+	rm -rf lemon lemon-1.2 lemon-1.2.tar.gz lemonpath ## clearing lemon stuffz
+	rm -rf graphviz graphviz-2.30.0 graphviz-2.30.0.tar.gz graphviz-2.30.0.tar.gz.md5 ## clearing graphfiz stuffz
+	rm -rf raphael.js gviz-api.js
 clean:
-	rm -rvf jati.svg jati.eps
+	rm -rvf jati.svg jati.eps hello_lemon
 jati.svg: jati.dot
-	graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg -ojati.svg jati.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg   -O jati.dot
+jati.png: jati.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tpng   -O jati.dot
+embed.svg: embed.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg   -O embed.dot
+embed.png: embed.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tpng   -O embed.dot
+
 jati.eps: jati.dot
-	graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Teps -ojati.eps jati.dot
+	graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Teps -O jati.dot
+
+### raphael stuff (SVG manipulation library)
+raphael.js:
+	wget http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js
+### Google Visualization API class definitions for intellisense
+gviz-api.js:
+	wget http://www.google.com/uds/modules/gviz/gviz-api.js
+
 #### graphviz stuff
 graphviz: graphviz-2.30.0
 	mkdir -p graphviz;
 	cd graphviz-2.30.0 && ./configure --prefix=`pwd`/../graphviz --with-ortho=yes && make && make install
-
 graphviz-2.30.0: graphviz-2.30.0.tar.gz
 	tar xzf graphviz-2.30.0.tar.gz
 graphviz-2.30.0.tar.gz: graphviz-2.30.0.tar.gz.md5
@@ -19,6 +38,7 @@ graphviz-2.30.0.tar.gz: graphviz-2.30.0.tar.gz.md5
 	@touch graphviz-2.30.0.tar.gz graphviz-2.30.0.tar.gz.md5
 graphviz-2.30.0.tar.gz.md5:
 	wget http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-2.30.0.tar.gz.md5
+
 ### lemon stuff
 lemon-1.2.tar.gz:
 	-@tput setf 6
@@ -29,7 +49,7 @@ lemon-1.2: lemon-1.2.tar.gz
 	-@tput setf 6
 	@echo "Kicsomagolom ide a lemont"
 	-@tput sgr0
-	tar xvzf lemon-1.2.tar.gz
+	tar xzf lemon-1.2.tar.gz
 lemon: lemon-1.2
 	-@tput setf 6
 	@echo "Most installalok lokalisan egy lemon-t"

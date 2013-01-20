@@ -1,9 +1,9 @@
 digraph G{
-graph [splines=ortho, concentrate=true]
+graph [splines=ortho, concentrate=true, id="jati-fa"]
+1 -> {2,3,4,5}
+hub[id="hub"]; mol[id="mol"];mf[id="mf"];tsi2[id="tsi2"];guest[id="guest"]
+55[style="invisible",shape="point",color=pink];
+5->55 [dir=none, penwidth=5, color=pink];
+55->{ hub; mol; mf; tsi2;  } [dir=none, penwidth=5, color=pink]
 
-1->2[label="12"];
-3->2;
-2->4;
-2->5;
-5->{ hub; mol; mf; tsi2; guest; }[dir=none, penwidth=5, color=pink]
 }
