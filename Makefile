@@ -28,7 +28,7 @@ gviz-api.js:
 #### graphviz stuff
 graphviz: graphviz-2.30.0
 	mkdir -p graphviz;
-	cd graphviz-2.30.0 && ./configure --prefix=`pwd`/../graphviz --with-ortho=yes && make && make install || rm -rf graphviz
+	cd graphviz-2.30.0 && ./configure --prefix=`pwd`/../graphviz --with-ortho=yes && make && make install || rmdir graphviz
 graphviz-2.30.0: graphviz-2.30.0.tar.gz
 	tar xzf graphviz-2.30.0.tar.gz
 graphviz-2.30.0.tar.gz: graphviz-2.30.0.tar.gz.md5
