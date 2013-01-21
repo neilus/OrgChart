@@ -1,15 +1,25 @@
 digraph G{
-graph [splines=ortho, concentrate=true, id="jati-fa"]
-1[id="1"];
-2[id="2"];
-3[id="3"];
-4[id="4"];
-5[id="5"];
-hub[id="hub"];
-mol[id="mol"];
-mf[id="mf"];
-tsi2[id="tsi2"];
-guest[id="guest"];
+graph [splines=ortho, concentrate=true, id="test_fa",overlap=false]
+1[id="\N"];
+2[id="\N"];
+3[id="\N"];
+4[id="\N"];
+5[id="\N"];
+hub[id="\N"];
+mol[id="\N"];
+mf[id="\N"];
+tsi2[id="\N"];
+guest[id="\N"];
 
+11[shape="point",visible="false"];
+55[shape="point",visible="false", color="pink"];
 
+1 -> 11[dir=none,id="1_to_\H"];
+11 -> {2,3,4,5}[id="1_to_\H"];
+
+5 -> 55 [dir=none,id="5_to_\H", color="pink"];
+55 -> {hub,mol,mf,tsi2,guest}[dir=none,id="5_to_\H", color="pink"];
+
+padawan[id="padawan"]; samson[id="samson"]; lizzy[id="lizzy"];
+2 -> {padawan,samson,lizzy}[id="\T_to_\H", splines=ortho,concentrate=true,overlap=false];
 }
