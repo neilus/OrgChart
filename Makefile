@@ -1,5 +1,6 @@
 all: jati.svg jati.eps
-toolchain: graphviz raphael.js gviz-api.js d3
+toolchain: lemon graphviz raphael.js gviz-api.js d3 phpdocx_free
+	mkdir -p svg vml eps png
 clean-toolchain:
 	rm -rf lemon* ## clearing lemon stuffz
 	rm -rf graphviz* ## clearing graphfiz stuffz
@@ -28,11 +29,14 @@ jquery:
 d3:
 	git clone git://github.com/mbostock/d3.git
 	cd d3 && npm install && npm test
+#### php docx stuff
+phpdocx_free:phpdocx_free.tar.gz
+	tar xvzf phpdocx_free.tar.gz
 
 #### graphviz stuff
 graphviz: graphviz-2.30.0
 	mkdir -p graphviz;
-	cd graphviz-2.30.0 && ./configure --prefix=`pwd`/../graphviz --with-ortho=yes && make && make install || rmdir graphviz
+	cd graphviz-2.30.0 && ./configure --prefix=`pwd`/../graphviz --with-ortho=yes && make && make install || rmdir graphviz && make graphviz
 graphviz-2.30.0: graphviz-2.30.0.tar.gz
 	tar xzf graphviz-2.30.0.tar.gz
 graphviz-2.30.0.tar.gz: graphviz-2.30.0.tar.gz.md5
