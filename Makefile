@@ -1,22 +1,20 @@
 all: jati.svg jati.eps
-toolchain: lemon graphviz raphael.js gviz-api.js
+toolchain: lemon graphviz raphael.js gviz-api.js d3
 clean-toolchain:
 	rm -rf lemon lemon-1.2 lemon-1.2.tar.gz lemonpath ## clearing lemon stuffz
 	rm -rf graphviz graphviz-2.30.0 graphviz-2.30.0.tar.gz graphviz-2.30.0.tar.gz.md5 ## clearing graphfiz stuffz
-	rm -rf raphael.js gviz-api.js
+	rm -rf raphael.js gviz-api.js d3
 clean:
-	rm -rvf jati.svg jati.eps hello_lemon
-jati.svg: jati.dot
-	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg   -O jati.dot
-jati.png: jati.dot
-	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tpng   -O jati.dot
-embed.svg: embed.dot
-	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg   -O embed.dot
-embed.png: embed.dot
-	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tpng   -O embed.dot
+	rm -rf svg/* vml/* png/*
 
-jati.eps: jati.dot
-	graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Teps -O jati.dot
+svg/%.svg: dot/%.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg   -o $@ dot/${notdir $(patsubst %.svg, %.dot, $@) }
+vml/%.vml: dot/%.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tvml   -o $@ dot/${notdir $(patsubst %.vml, %.dot, $@) }
+png/%.png: dot/%.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tpng   -o $@ dot/${notdir $(patsubst %.png, %.dot, $@) }
+eps/%.eps: dot/%.dot
+	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Teps   -o $@ dot/${notdir $(patsubst %.eps, %.dot, $@) }
 
 ### raphael stuff (SVG manipulation library)
 raphael.js:
@@ -24,6 +22,12 @@ raphael.js:
 ### Google Visualization API class definitions for intellisense
 gviz-api.js:
 	wget http://www.google.com/uds/modules/gviz/gviz-api.js
+jquery:
+	wget http://www.basicprimitives.com/index.php?option=com_phocadownload&view=file&id=1:primitiveszip&Itemid=21&lang=en
+
+d3:
+	git clone git://github.com/mbostock/d3.git
+	cd d3 && npm install && npm test
 
 #### graphviz stuff
 graphviz: graphviz-2.30.0

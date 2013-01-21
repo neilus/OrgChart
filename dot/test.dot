@@ -1,0 +1,15 @@
+digraph G{
+graph [splines=ortho, concentrate=true, id="jati-fa"]
+1[id="1"];
+2[id="2"];
+3[id="3"];
+4[id="4"];
+5[id="5"];
+hub[id="hub"];
+mol[id="mol"];
+mf[id="mf"];
+tsi2[id="tsi2"];
+guest[id="guest"];
+
+
+}
