@@ -1,5 +1,5 @@
 all: jati.svg jati.eps
-toolchain: lemon graphviz raphael.js gviz-api.js d3
+toolchain: graphviz raphael.js gviz-api.js d3
 clean-toolchain:
 	rm -rf lemon* ## clearing lemon stuffz
 	rm -rf graphviz* ## clearing graphfiz stuffz
