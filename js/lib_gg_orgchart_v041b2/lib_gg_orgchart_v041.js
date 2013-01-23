@@ -4,7 +4,7 @@
  * Copyright (c) 2012 Gorka G Llona - http://www.fluxus.com.ve/gorka.
  * Licensed under the GNU Lesser General Public License.
  * Project home: http://www.fluxus.com.ve/gorka/lib_gg_orgchart.
- * 
+ *
  * Revision history:
  * v.0.4.0        (2012.05.14, GG): made publicly available
  * v.0.4.1 beta 1 (2012.07.11, GG): added support for images within boxes
@@ -58,7 +58,7 @@ var oc_paper = null;
 
 
 // clone an object or array
-// 
+//
 function oc_clone (obj) {
 	var newObj = (obj instanceof Array) ? [] : {};
 	for (i in obj) {
@@ -313,7 +313,7 @@ function oc_boundboxes_dimensions (node) {
 			else   // right
 				collateral_right_width = child.fullbbox[0] + node.boundbox[0] / 2;
 		}
-	}            
+	}
 	// 2. staff children
 	var staff_height = 0;
 	var last_left_height = 0;
@@ -341,7 +341,7 @@ function oc_boundboxes_dimensions (node) {
 					staff_right_width = child.fullbbox[0];
 			}
 		}
-	}        
+	}
 	// 3. subordinate children
 	var subordinate_full_width = 0;
 	if (node.children !== undefined) {
@@ -385,7 +385,7 @@ function oc_boundboxes_dimensions (node) {
 			}
 			oc_update_fullbbox(node, child);
 		}
-	}            
+	}
 	// 2. staff children
 	staff_height = 0;
 	last_left_height = 0;
@@ -416,7 +416,7 @@ function oc_boundboxes_dimensions (node) {
 			}
 			oc_update_fullbbox(node, child);
 		}
-	}            
+	}
 	// 3. subordinate children
 	var incremental_width = 0;
 	var diff_width = left_width - subordinate_full_width / 2;
@@ -440,7 +440,7 @@ function oc_boundboxes_dimensions (node) {
 		}
 	}
 
-	if (OC_DEBUG) { 
+	if (OC_DEBUG) {
 		if (node.children !== undefined) {
 			for (var i = 0; i < node.children.length - (oc_IE); i++) {
 				var child = node.children[i];
@@ -599,7 +599,7 @@ function oc_draw_obj (node, parent, xoffset, yoffset) {
 		line2.attr('stroke', oc_style.line_color);
 	}
 
-	if (OC_DEBUG) {
+	if (
 		// draw the boundbox
 		x0 = xoffset + node.deltacorner[0] + node.xoffset;
 		x1 = xoffset + node.deltacorner[0] + node.xoffset + node.boundbox[0];
@@ -607,7 +607,7 @@ function oc_draw_obj (node, parent, xoffset, yoffset) {
 		y1 = yoffset + node.deltacorner[1] + node.boundbox[1];
 		var boundbox = oc_paper.rect(x0 + 4, y0 + 4, x1 - x0 - 8, y1 - y0 - 6);
 		boundbox.attr({
-			stroke : "#00f", 
+			stroke : "#00f",
 			"stroke-width" : 0.4
 		});
 		// draw the fullbbox
@@ -617,7 +617,7 @@ function oc_draw_obj (node, parent, xoffset, yoffset) {
 		y1 = yoffset + node.deltacorner[1] + node.fullbbox[1];
 		var fullbbox = oc_paper.rect(x0 + 2, y0 + 2, x1 - x0 - 4, y1 - y0 - 2);
 		fullbbox.attr({
-			stroke : "#f00", 
+			stroke : "#f00",
 			"stroke-width" : 0.4
 		});
 	}

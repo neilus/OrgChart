@@ -14,8 +14,8 @@
 <head>
 
 	<!-- first include these two library files -->
-	<script type="text/javascript" src="raphael-min.js"></script>  
-	<script type="text/javascript" src="lib_gg_orgchart_v041.js"></script>  
+	<script type="text/javascript" src="raphael-min.js"></script>
+	<script type="text/javascript" src="lib_gg_orgchart_v041.js"></script>
 
 	<!-- now define the organizational chart content and style -->
 	<script type="text/javascript">
@@ -24,7 +24,7 @@
 		// there are provided three sample organizational charts
 		// change this variable to show any of these
 		//
-		var oc_sample_data_to_use = 4;
+		var oc_sample_data_to_use = 5;
 
 
 		// SAMPLE DATA #1
@@ -65,7 +65,7 @@
 						]
 					}
 				]
-			}	
+			}
 		}
 
 
@@ -186,6 +186,17 @@
 		};
 
 
+		var oc_data_5 = {
+			"title":"Norbi kedvenc fa-diagrammja bazdmeg!",
+			"root":{
+				"id":"42",
+				"title":"DON'T PANIC!",
+				"children" : [
+					{"id":"1","title":"lalala","type":"subordinate"},
+					{"id":"2","title":"bibibi","type":"subordinate"},
+				]
+			}
+		};
 		// ORG CHART CONTENT
 		// must be in 'oc_data' global variable
 		var oc_data =
@@ -193,8 +204,9 @@
 			(oc_sample_data_to_use == 2 ? oc_data_2 :
 			(oc_sample_data_to_use == 3 ? oc_data_3 :
 			(oc_sample_data_to_use == 4 ? oc_data_4 :
+			(oc_sample_data_to_use == 5 ? oc_data_5 :
 										  oc_data_1
-		))));
+		)))));
 
 
 		// ORG CHART STYLES
@@ -216,7 +228,7 @@
 			subtitle_font_size : 10,                     // size of font used for displaying subtitles inside boxes
 			title_char_size    : [ 6, 12 ],              // size (x, y) of a char of the font used for displaying titles
 			subtitle_char_size : [ 5, 10 ],              // size (x, y) of a char of the font used for displaying subtitles
-			max_text_width     : 15,                     // max width (in chars) of each line of text ('0' for no limit) 
+			max_text_width     : 15,                     // max width (in chars) of each line of text ('0' for no limit)
 			text_font          : 'Courier',              // font family to use (should be monospaced)
 			use_images         : use_images,             // use images within boxes?
 			images_base_url    : './images/',            // base url of the images to be embeeded in boxes, with a trailing slash
@@ -246,10 +258,10 @@
 
 	</script>
 
-</head>  
-<body>  
+</head>
+<body>
 
-	<div id="oc_container"></div>  
+	<div id="oc_container"></div>
 
-</body>  
+</body>
 </html>

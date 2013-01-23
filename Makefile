@@ -1,10 +1,12 @@
 all: jati.svg jati.eps
-toolchain: lemon graphviz raphael.js gviz-api.js d3 phpdocx_free
+toolchain: graphviz phpdocx_free
 	mkdir -p svg vml eps png
+js-toolchain: js/raphael.js js.gviz-api.js js/jquery js/d3
 clean-toolchain:
 	rm -rf lemon* ## clearing lemon stuffz
 	rm -rf graphviz* ## clearing graphfiz stuffz
 	rm -rf raphael.js gviz-api.js d3
+	rm -rf js/raphael.js js/gviz-api.js js/d3
 clean:
 	rm -rf svg/* vml/* png/*
 
@@ -18,17 +20,17 @@ eps/%.eps: dot/%.dot
 	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Teps   -o $@ dot/${notdir $(patsubst %.eps, %.dot, $@) }
 
 ### raphael stuff (SVG manipulation library)
-raphael.js:
-	wget http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js
-### Google Visualization API class definitions for intellisense
-gviz-api.js:
-	wget http://www.google.com/uds/modules/gviz/gviz-api.js
-jquery:
-	wget http://www.basicprimitives.com/index.php?option=com_phocadownload&view=file&id=1:primitiveszip&Itemid=21&lang=en
+js/raphael.js:
+	cd js && wget --no-check-certificate  http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js
 
-d3:
-	git clone git://github.com/mbostock/d3.git
-	cd d3 && npm install && npm test
+### Google Visualization API class definitions for intellisense
+js/gviz-api.js:
+	cd js && wget http://www.google.com/uds/modules/gviz/gviz-api.js
+js/jquery:
+	cd js && wget http://www.basicprimitives.com/index.php?option=com_phocadownload&view=file&id=1:primitiveszip&Itemid=21&lang=en
+
+js/d3:
+	cd js && git clone git://github.com/mbostock/d3.git && cd d3 && npm install && npm test
 #### php docx stuff
 phpdocx_free:phpdocx_free.tar.gz
 	tar xvzf phpdocx_free.tar.gz
