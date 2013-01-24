@@ -1,5 +1,5 @@
-all: jati.svg jati.eps
-toolchain: graphviz phpdocx_free
+all: 
+toolchain: phpdocx_free
 	mkdir -p svg vml eps png docx
 js-toolchain: js/raphael.js js/gviz-api.js js/jquery js/d3
 clean-toolchain:

@@ -3,11 +3,12 @@
 <body>
 <?php
 
-$output='phpdocx_output';
+$output='hello_bold_text';
 require_once('includes.inc');
 require_once($PHPDOCX.'CreateDocx.inc');
 $docx = new CreateDocx();
 // adding my formatted text into a string
+$text = array();
 $text[] =
 	array(
 	'text' => 'I am going to write',
@@ -26,6 +27,6 @@ $text[] =
 $docx->addText($text);
 $docx->createDocx($DOCX_OUT.$output);
 
-print '<a href="'.$DOCX_OUT.$output.'.docx" >GRAB THE docx file!</a> ';
+print '<a href="'.$DOCX_OUT.$output.'.docx" >This one</a> doesn\'t semms to work for me on libre office nor wordpad';
 ?>
 </body></html>
