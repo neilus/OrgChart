@@ -1,15 +1,16 @@
 all: jati.svg jati.eps
 toolchain: graphviz phpdocx_free
-	mkdir -p svg vml eps png
+	mkdir -p svg vml eps png docx
 js-toolchain: js/raphael.js js/gviz-api.js js/jquery js/d3
 clean-toolchain:
 	rm -rf lemon* ## clearing lemon stuffz
 	rm -rf graphviz* ## clearing graphfiz stuffz
 	rm -rf raphael.js gviz-api.js d3
 	rm -rf js/raphael.js js/gviz-api.js js/d3
+	rm -rf phpdocx_free*
 clean:
-	rm -rf eps svg vml png
-	rm -rf phpdocx_free\
+	rm -rf eps svg vml png docx
+
 
 svg/%.svg: dot/%.dot
 	./graphviz/bin/dot -Gsplines=ortho -Gconcentrate=yes -Tsvg   -o $@ dot/${notdir $(patsubst %.svg, %.dot, $@) }
@@ -35,7 +36,8 @@ js/d3:
 #### php docx stuff
 phpdocx_free:phpdocx_free.tar.gz
 	tar xvzf phpdocx_free.tar.gz
-
+phpdocx_free.tar.gz:
+	wget http://www.phpdocx.com/wp-content/themes/lightword/files/phpdocx_free.tar.gz
 #### graphviz stuff
 graphviz: graphviz-2.30.0
 	mkdir -p graphviz;

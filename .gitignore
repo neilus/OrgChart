@@ -8,3 +8,7 @@ raphael.js
 d3*
 .c9revisions*
 phpdocx_free*
+*.tar.gz
+*.tar.bz
+*.tar
+*.zip
