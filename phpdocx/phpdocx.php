@@ -1,8 +1,8 @@
-<?php phpinfo();
-
-require_once('phpdocx_free/classes/CreateDocx.inc');
+<?php
+require_once('includes.inc');
+require_once($PHPDOCX.'/CreateDocx.inc');
 $docx = new CreateDocx();
 $docx->addText('Hello world!');
-$docx->createDocx('docx/hello_world');
+$docx->createDocx($DOCX_OUT.'/phpdocx_output');
 
 ?>
